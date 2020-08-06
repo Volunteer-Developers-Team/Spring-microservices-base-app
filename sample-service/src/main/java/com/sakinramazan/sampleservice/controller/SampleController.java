@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RefreshScope
-@CrossOrigin(origins = "http://localhost:9090/gateway-uri-base-path/sample-service")   // allow all requests from anywhere
+@CrossOrigin("*")   // allow gateway requests only
 @Slf4j
 public class SampleController {
 
@@ -26,7 +26,7 @@ public class SampleController {
     private int port;
 
     // you can use app props variables like this
-    @Value("${sample.message}")
+    @Value("${sample.message:Config-server is not available}")  // set default value when config-server is not running properly
     private String sampleMessage;
 
     private final SampleService sampleService;
