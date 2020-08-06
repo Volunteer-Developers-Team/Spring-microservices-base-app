@@ -1,0 +1,36 @@
+# App Configs
+# --------------------------------------------------------------
+server:
+  port: 9090
+
+spring:
+  application:
+    name: gateway-service
+
+info:
+  component: API Gateway
+# --------------------------------------------------------------
+# Zuul Configs
+# --------------------------------------------------------------
+zuul:
+  ignoredServices: '*'
+  routes:
+    sample-service:
+      path: /sample-service/api/**
+      serviceId: sample-service
+  prefix: /gateway-uri-base-path
+#  host:
+#    connect-timeout-millis: 2000
+#    socket-timeout-millis: 5000
+# --------------------------------------------------------------
+# Eureka configs
+# --------------------------------------------------------------
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
